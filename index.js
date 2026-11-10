@@ -35,7 +35,13 @@ app.get('/events', async(req, res)=>{
   const result = await eventsCollection.find({}).toArray();
   res.send(result);
 })
- 
+
+ app.delete('/events/:id', async(req, res)=>{
+   const {id} = req.params;
+   const result = await eventsCollection.deleteOne({_id:new ObjectId(id)});
+   res.json(result);
+ });
+
 app.get(['/events/:id'], async(req, res)=>{
   const {id} = req.params;
   const result = await eventsCollection.findOne({_id:new ObjectId(id)});
