@@ -35,7 +35,7 @@ app.get('/events', async(req, res)=>{
   const result = await eventsCollection.find({}).toArray();
   res.send(result);
 })
-
+ 
 app.get(['/events/:id'], async(req, res)=>{
   const {id} = req.params;
   const result = await eventsCollection.findOne({_id:new ObjectId(id)});
@@ -43,6 +43,24 @@ app.get(['/events/:id'], async(req, res)=>{
   res.send(result);
 
 })
+
+
+
+// EDI dATA
+  app.patch('/events/:id', async(req, res)=>{
+   const {id} = req.params;
+   const data = req.body;
+   console.log(data);
+   
+    const result = await eventsCollection.updateOne(
+      {_id:new ObjectId(id)},
+      {$set:data}
+    )
+   res.json(result)
+   console.log(result);
+   
+   
+  })
 
 app.get('/', (req, res) => {
   res.send('Hello World');
