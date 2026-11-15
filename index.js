@@ -1,4 +1,4 @@
-import "dotenv/config";
+﻿import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { MongoClient, ObjectId } from "mongodb";
@@ -6,7 +6,7 @@ import { createRemoteJWKSet, jwtVerify } from "jose";
 
 const app = express();
 const port = Number(process.env.PORT ?? 5000);
-const authUrl = process.env.BETTER_AUTH_URL ?? "http://localhost:3000";
+const authUrl = process.env.CLIENT_URL;
 const audience = "community-events-api";
 const jwks = createRemoteJWKSet(new URL("/api/auth/jwks", authUrl));
 
@@ -19,7 +19,7 @@ const joinedEvents = db.collection("joined");
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL ?? "http://localhost:3000",
+    origin: process.env.CLIENT_URL,
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
@@ -349,3 +349,6 @@ app.use((error, _req, res, _next) => {
 app.listen(port, () => {
   console.log(`Goodturn API is running on port ${port}.`);
 });
+
+
+export default app

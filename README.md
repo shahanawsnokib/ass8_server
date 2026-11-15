@@ -11,11 +11,10 @@ Express and MongoDB API for the Goodturn community-service events platform.
    PORT=5000
    MONGODB_URI=your-mongodb-connection-string
    CLIENT_URL=http://localhost:3000
-   BETTER_AUTH_URL=http://localhost:3000
    ```
 
-   Set `BETTER_AUTH_URL` to the same origin configured as
-   `NEXT_PUBLIC_BASE_URL` in the client. Keep database credentials private.
+   Set `CLIENT_URL` to the origin configured as `NEXT_PUBLIC_BASE_URL` in the
+   client. Keep database credentials private.
 3. Start the server with `node index.js`.
 
 ## API
